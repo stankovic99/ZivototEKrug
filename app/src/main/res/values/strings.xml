@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Животот е круг</string>
+    <string name="tipUsluga">Изберете тип на услуга</string>
+    <string name="vremetraenje">Колку ке трае активноста</string>
+</resources>

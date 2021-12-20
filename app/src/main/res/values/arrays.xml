@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipBaranja">
+        <item>Донеси кеси</item>
+        <item>Купи крем</item>
+        <item>Купи палачинки</item>
+        <item>Донеси кафе од Микел</item>
+        <item>Хамбургер од 7ца</item>
+        <item>Криспи чикен од Ројал</item>
+        <item>Сендвич од Енрико</item>
+    </string-array>
+    <string-array name="vremetraenje">
+        <item>Еднократно</item>
+        <item>Повеќекратно</item>
+    </string-array>
+    <string-array name="itnost">
+        <item>Да</item>
+        <item>Не</item>
+    </string-array>
+</resources>

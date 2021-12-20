@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1018218474450",
+    "firebase_url": "https://zivototekrug-d2579-default-rtdb.firebaseio.com",
+    "project_id": "zivototekrug-d2579",
+    "storage_bucket": "zivototekrug-d2579.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018218474450:android:907c7bf79e5b31e34e360b",
+        "android_client_info": {
+          "package_name": "com.example.zivototekrug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018218474450-seh715pmc4mnshibgg821edachq4rk0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzAfXBnrc8yFDfTN4CKT73kYzFIVBw-NQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018218474450-seh715pmc4mnshibgg821edachq4rk0m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1018218474450-d0ecfculbo8dlu2u6er2jl1ja486n4hd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.stefan.ZivototEKrug"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

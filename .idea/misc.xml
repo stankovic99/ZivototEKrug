@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2703125" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/drawable/input_rounded.xml" value="0.2703125" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/drawable/rounded_border.xml" value="0.2703125" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/drawable/shape.xml" value="0.2703125" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_lista_naracki.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_login.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_lokacija.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_naracka.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_postaro_lice.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/Stefan/AndroidStudioProjects/ZivototEKrug/app/src/main/res/layout/activity_register.xml" value="0.1793478260869565" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -9,9 +9,9 @@
         <item>Криспи чикен од Ројал</item>
         <item>Сендвич од Енрико</item>
     </string-array>
-    <string-array name="vremetraenje">
-        <item>Еднократно</item>
-        <item>Повеќекратно</item>
+    <string-array name="povtorlivost">
+        <item>Да</item>
+        <item>Не</item>
     </string-array>
     <string-array name="itnost">
         <item>Да</item>

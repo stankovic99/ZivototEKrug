@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="plava">#3EB3E1</color>
     <color name="pozadina">#E7E7E7</color>
+    <color name="darkGray">#333533</color>
+    <color name="red">#DF2C2C</color>
 </resources>

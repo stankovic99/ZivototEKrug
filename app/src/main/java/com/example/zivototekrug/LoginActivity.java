@@ -55,9 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else if (user.getDisplayName().equals("Volonter")) {
                                     //Navigiraj kon volonter
                                     Toast.makeText(LoginActivity.this, "Волонтер се најави", Toast.LENGTH_SHORT).show();
-                                } else if (user.getDisplayName().equals("Organizator")) {
-                                    //Navigiraj do volonter
-                                    Toast.makeText(LoginActivity.this, "Организатор се најави", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(LoginActivity.this, VolonterActivity.class));
                                 }
                             }else {
                                 Toast.makeText(LoginActivity.this, "Неуспешна најава", Toast.LENGTH_SHORT).show();

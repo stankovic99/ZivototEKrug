@@ -73,10 +73,13 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
                                 HashMap<String,Object> map = new HashMap<>();
-                                map.put("Ime",txt_ime);
-                                map.put("Prezime",txt_prezime);
-                                map.put("Telefon",txt_telefon);
+                                map.put("Name",txt_ime);
+                                map.put("Surname",txt_prezime);
+                                map.put("Phone",txt_telefon);
                                 map.put("Email",txt_email);
+                                String fullName = txt_ime + " " + txt_prezime;
+                                map.put("FullName",fullName);
+                                map.put("Rejting", "0.0");
                                 int selectedId = radioGrupa.getCheckedRadioButtonId();
                                 radioButton = (RadioButton)findViewById(selectedId);
                                 if(radioButton.getId() == R.id.postaroLice) {
@@ -89,14 +92,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(new Intent(RegisterActivity.this, NarackaActivity.class));
                                 }else if(radioButton.getId() == R.id.volonter){
                                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    String uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+                                    FirebaseDatabase.getInstance().getReference().child("Users").child(uid).updateChildren(map);
                                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName("Volonter").build();
                                     user.updateProfile(profileUpdates);
                                     Toast.makeText(RegisterActivity.this,"Успешно се креираше волонтер",Toast.LENGTH_SHORT).show();
-                                }else if(radioButton.getId() == R.id.organizator){
-                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName("Organizator").build();
-                                    user.updateProfile(profileUpdates);
-                                    Toast.makeText(RegisterActivity.this,"Успешно се креираше организатор",Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(RegisterActivity.this, VolonterActivity.class));
                                 }
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Неуспешно креирање на корисник", Toast.LENGTH_SHORT).show();

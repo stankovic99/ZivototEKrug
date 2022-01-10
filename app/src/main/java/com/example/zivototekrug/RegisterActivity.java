@@ -77,9 +77,11 @@ public class RegisterActivity extends AppCompatActivity {
                                 map.put("Surname",txt_prezime);
                                 map.put("Phone",txt_telefon);
                                 map.put("Email",txt_email);
+                                map.put("BrojNaRejting",0);
+                                map.put("Rejting",0);
+                                map.put("SumaRejting",0);
                                 String fullName = txt_ime + " " + txt_prezime;
                                 map.put("FullName",fullName);
-                                map.put("Rejting", "0.0");
                                 int selectedId = radioGrupa.getCheckedRadioButtonId();
                                 radioButton = (RadioButton)findViewById(selectedId);
                                 if(radioButton.getId() == R.id.postaroLice) {

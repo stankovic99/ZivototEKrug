@@ -60,7 +60,7 @@ public class NarackaActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     private int hour, minute, year, month, day;
-    private double lat, lon;
+    private double lat, lon, newLat, newLon;
     private String celoIme, rejting, telefon, datumVreme;
 
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -72,6 +72,10 @@ public class NarackaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_naracka);
 
         auth = FirebaseAuth.getInstance();
+
+        Intent intent = getIntent();
+        newLat = intent.getDoubleExtra("NewLat",0);
+        newLon = intent.getDoubleExtra("NewLon",0);
 
         tipUsluga = findViewById(R.id.tipUslugaText);
         opisUsluga = findViewById(R.id.opisUslugaText);
@@ -110,7 +114,15 @@ public class NarackaActivity extends AppCompatActivity {
         lokacija.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NarackaActivity.this, LokacijaActivity.class));
+                Intent intent = new Intent(NarackaActivity.this, LokacijaActivity.class);
+                if(newLat == 0.0 && newLon == 0.0){
+                    intent.putExtra("Lat", lat);
+                    intent.putExtra("Lon", lon);
+                }else{
+                    intent.putExtra("Lat", newLat);
+                    intent.putExtra("Lon", newLon);
+                }
+                startActivity(intent);
             }
         });
 
@@ -127,8 +139,13 @@ public class NarackaActivity extends AppCompatActivity {
                         }
                         map.put("TipNaUsluga",tipUsluga.getText().toString());
                         map.put("OpisNaUsluga",opisUsluga.getText().toString());
-                        map.put("Lat", lat);
-                        map.put("Lon", lon);
+                        if(newLat == 0.0 && newLon == 0.0){
+                            map.put("Lat", lat);
+                            map.put("Lon", lon);
+                        }else{
+                            map.put("Lat", newLat);
+                            map.put("Lon", newLon);
+                        }
                         if (datum.getText().equals("Избери датум") || vreme.getText().equals("Избери време")){
                             if(datum.getText().equals("Избери датум") && vreme.getText().equals("Избери време") == false){
                                 datumVreme = vreme.getText().toString();
@@ -142,13 +159,17 @@ public class NarackaActivity extends AppCompatActivity {
                         }
                         map.put("Datum", datumVreme);
                         map.put("ImeKorisnik",celoIme);
-                        map.put("RejtingKorisnik",rejting);
+                        map.put("RejtingNaKorisnik",rejting);
                         map.put("EmailVolonter","");
                         map.put("ImeVolonter","");
-                        map.put("RejtingVolonter","");
                         map.put("Status","Aktivna");
                         map.put("TelefonKorisnik",telefon);
                         map.put("TelefonVolonter","");
+                        map.put("OpisZaKorisnik","");
+                        map.put("OpisZaVolonter","");
+                        map.put("RejtingZaKorisnik",0);
+                        map.put("RejtingNaVolonter",0);
+                        map.put("RejtingZaVolonter",0);
                         FirebaseDatabase.getInstance().getReference().child("KorisnickiNaracki").push().updateChildren(map);
                     }
                     @Override

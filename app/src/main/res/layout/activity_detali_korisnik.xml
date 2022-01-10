@@ -180,15 +180,16 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/volonterDetali"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/rejtingLevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:text="Рејтинг:"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:text="Рејтинг:"
             android:textColor="@color/black"
-            android:layout_marginLeft="20dp"/>
+            android:textSize="17dp" />
         <TextView
             android:id="@+id/rejtingDesno"
             android:layout_width="wrap_content"
@@ -204,15 +205,16 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/rejtingDetali"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/telefonLevo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:text="Телефон:"
             android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:text="Телефон:"
             android:textColor="@color/black"
-            android:layout_marginLeft="20dp"/>
+            android:textSize="17dp" />
         <TextView
             android:id="@+id/telefonDesno"
             android:layout_width="wrap_content"
@@ -253,8 +255,28 @@
         android:text="Прифати"
         app:layout_constraintTop_toBottomOf="@+id/emailVolonterDetali"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/otkazi"
+        android:backgroundTint="@color/zelena"
+        android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/otkazi"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Откажи"
+        app:layout_constraintTop_toBottomOf="@+id/emailVolonterDetali"
+        app:layout_constraintLeft_toRightOf="@+id/prifati"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@color/plava"
+        android:backgroundTint="@color/red"
+        android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/oceniVolonter"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Оцени волонтер"
+        app:layout_constraintTop_toBottomOf="@+id/otkazi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:backgroundTint="@color/plava"
         android:layout_marginTop="30dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

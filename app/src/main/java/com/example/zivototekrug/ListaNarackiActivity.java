@@ -27,7 +27,7 @@ public class ListaNarackiActivity extends AppCompatActivity {
     private ListView lista;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    private String tipNaUsluga, opisNaUsluga, datum, povtorlivost, itnost, status, volonter, rejting, telefon, emailVolonter;
+    private String tipNaUsluga, opisNaUsluga, datum, povtorlivost, itnost, status, volonter, rejting, telefon, emailVolonter, rejtingZaVolonter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,9 +69,10 @@ public class ListaNarackiActivity extends AppCompatActivity {
                             itnost = postSnapshot.child("Itnost").getValue().toString();
                             status = postSnapshot.child("Status").getValue().toString();
                             volonter = postSnapshot.child("ImeVolonter").getValue().toString();
-                            rejting = postSnapshot.child("RejtingVolonter").getValue().toString();
+                            rejting = postSnapshot.child("RejtingNaVolonter").getValue().toString();
                             telefon = postSnapshot.child("TelefonVolonter").getValue().toString();
                             emailVolonter = postSnapshot.child("EmailVolonter").getValue().toString();
+                            rejtingZaVolonter = postSnapshot.child("RejtingZaVolonter").getValue().toString();
                         }
                         intent.putExtra("TipNaUsluga",tipNaUsluga);
                         intent.putExtra("OpisNaUsluga",opisNaUsluga);
@@ -80,9 +81,10 @@ public class ListaNarackiActivity extends AppCompatActivity {
                         intent.putExtra("Itnost",itnost);
                         intent.putExtra("Status",status);
                         intent.putExtra("ImeVolonter",volonter);
-                        intent.putExtra("RejtingVolonter",rejting);
+                        intent.putExtra("RejtingNaVolonter",rejting);
                         intent.putExtra("TelefonVolonter",telefon);
                         intent.putExtra("EmailVolonter",emailVolonter);
+                        intent.putExtra("RejtingZaVolonter",rejtingZaVolonter);
                         startActivity(intent);
                     }
 

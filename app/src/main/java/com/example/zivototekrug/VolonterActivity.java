@@ -8,7 +8,9 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,12 +26,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class VolonterActivity extends AppCompatActivity {
 
     private ArrayList<String> lines = new ArrayList<>();
     private ListView lista;
+    private static final int PERMISSIONS_FINE_LOCATION = 99;
     private Button logout, prijaveniZadaci;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private String celoIme, datum, tipNaUsluga, rastojanie, rejting, lat, lon;
@@ -51,42 +55,38 @@ public class VolonterActivity extends AppCompatActivity {
                 startActivity(new Intent(VolonterActivity.this, AktivniNarackiVolonterActivity.class));
             }
         });
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(VolonterActivity.this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(@NonNull Location location) {
-                volonterLat = location.getLatitude();
-                volonterLon = location.getLongitude();
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(@NonNull Location location) {
+                    volonterLat = location.getLatitude();
+                    volonterLon = location.getLongitude();
+                }
+            });
+        }else{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_FINE_LOCATION);
             }
-        });
-        FirebaseDatabase.getInstance().getReference("KorisnickiNaracki").orderByChild("EmailKorisnik").addListenerForSingleValueEvent(new ValueEventListener() {
+        }
+
+        FirebaseDatabase.getInstance().getReference("KorisnickiNaracki").orderByChild("Status").equalTo("Aktivna").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     //Tuka treba da se presmeta rastojanie na korisnici
                     korisnikLat =(Double) postSnapshot.child("Lat").getValue();
                     korisnikLon =(Double) postSnapshot.child("Lon").getValue();
-                    Location startPoint=new Location("locationA");
+                    Location startPoint = new Location("locationA");
                     startPoint.setLatitude(volonterLat);
                     startPoint.setLongitude(volonterLon);
 
-                    Location endPoint=new Location("locationA");
+                    Location endPoint = new Location("locationB");
                     endPoint.setLatitude(korisnikLat);
                     endPoint.setLongitude(korisnikLon);
-
+                    DecimalFormat f = new DecimalFormat("##.00");
                     distance=startPoint.distanceTo(endPoint);
-                    lines.add(postSnapshot.child("TipNaUsluga").getValue().toString() + " - " + distance + " km away");
+                    lines.add(postSnapshot.child("TipNaUsluga").getValue().toString() + " - " + f.format(distance) + " m away");
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                         VolonterActivity.this, android.R.layout.simple_list_item_1, lines);
@@ -122,14 +122,13 @@ public class VolonterActivity extends AppCompatActivity {
                             celoIme = postSnapshot.child("ImeKorisnik").getValue().toString();
                             datum = postSnapshot.child("Datum").getValue().toString();
                             tipNaUsluga = postSnapshot.child("TipNaUsluga").getValue().toString();
-                            rejting = postSnapshot.child("RejtingKorisnik").getValue().toString();
+                            rejting = postSnapshot.child("RejtingNaKorisnik").getValue().toString();
                         }
                         intent.putExtra("TipNaUsluga",tipNaUsluga);
                         intent.putExtra("ImeKorisnik",celoIme);
                         intent.putExtra("Datum",datum);
                         intent.putExtra("Rastojanie",rastojanie);
                         intent.putExtra("RejtingVolonter",rejting);
-
                         startActivity(intent);
                     }
 
